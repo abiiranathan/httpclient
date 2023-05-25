@@ -2,7 +2,7 @@
 
 ## Introduction
 
-`httpclient.h` is a C++ header file that provides a wrapper around the QNetworkAccessManager class in Qt. It simplifies performing HTTP requests in Qt by supporting both synchronous and asynchronous methods.
+`httpclient` Qt6/C++ library that wraps the QNetworkAccessManager class and simplifies performing HTTP requests in Qt by supporting both synchronous and asynchronous APIs.
 
 ## Table of Contents
 
@@ -26,9 +26,12 @@ Custom exception thrown when synchronous network calls fail. The caller must cat
 
 #### Public Methods
 
-- `NetworkException(int statusCode, const QString &message)`: Constructs a new NetworkException object.
-- `int getStatusCode() const`: Gets the status code of the response.
-- `const char *what() const noexcept`: Virtual override for the std::exception.
+- `NetworkException(int statusCode, const QString &message)`:
+  - Constructs a new NetworkException object.
+- `int getStatusCode() const`:
+  - Gets the status code of the response.
+- `const char *what() const noexcept`:
+  - Virtual override for the std::exception.
 
 ### HttpClient
 
@@ -36,45 +39,48 @@ Wrapper class around the QNetworkAccessManager to simplify performing HTTP reque
 
 #### Public Methods
 
-- `HttpClient(QObject *parent = nullptr)`
-  Constructs a new HttpClient object.
-- `HttpClient(QObject *parent, const QMap<QString, QString> &headers)`
-  Constructs a new HttpClient object with parent and default HTTP headers.
-- `virtual ~HttpClient()`
-  Destroys the HttpClient object.
-- `static void setRootCA(QString certPath)`
-  Sets the Root CA certificate.
-- `static void setBearerToken(const QString &jwtToken)`
-  Sets the Bearer Token for authentication.
-- `void get(const QString &url) noexcept`
-  Performs a GET request asynchronously.
-- `void post(const QString &url, const QByteArray &data) noexcept`
-  Performs a POST request asynchronously.
-- `void put(const QString &url, const QByteArray &data) noexcept`
-  Performs a PUT request asynchronously.
-- `void patch(const QString &url, const QByteArray &data) noexcept`
-  Performs a PATCH request asynchronously.
-- `void del(const QString &url) noexcept`
-  Performs a DELETE request asynchronously.
-- `QByteArray get_sync(const QString &url)`
-  Performs a synchronous GET request and blocks until the response arrives.
-- `QByteArray post_sync(const QString &url, const QByteArray &data)`
-  Performs a synchronous POST request and blocks until the response arrives.
-- `QByteArray put_sync(const QString &url, const QByteArray &data)`
-  Performs a synchronous PUT request and blocks until the response arrives.
-- `QByteArray patch_sync(const QString &url, const QByteArray &data)`
-  Performs a synchronous PATCH request and blocks until the response arrives.
-- `QByteArray del_sync(const QString &url)`
-  Performs a synchronous DELETE request and blocks until the response arrives.
+- `HttpClient(QObject *parent = nullptr)`:
+  - Constructs a new HttpClient object.
+- `HttpClient(QObject *parent, const QMap<QString, QString> &headers)`:
+  - Constructs a new HttpClient object with parent and default HTTP headers.
+- `virtual ~HttpClient()`:
+  - Destroys the HttpClient object.
+- `static void setRootCA(QString certPath)`:
+  - Sets the Root CA certificate.
+- `static void setBearerToken(const QString &jwtToken)`:
+  - Sets the Bearer Token for authentication.
+- `void get(const QString &url) noexcept`:
+  - Performs a GET request asynchronously.
+- `void post(const QString &url, const QByteArray &data) noexcept`:
+  - Performs a POST request asynchronously.
+- `void put(const QString &url, const QByteArray &data) noexcept`:
+  - Performs a PUT request asynchronously.
+- `void patch(const QString &url, const QByteArray &data) noexcept`:
+  - Performs a PATCH request asynchronously.
+- `void del(const QString &url) noexcept`:
+  - Performs a DELETE request asynchronously.
+- `QByteArray get_sync(const QString &url)`:
+  - Performs a synchronous GET request and blocks until the response arrives.
+- `QByteArray post_sync(const QString &url, const QByteArray &data)`:
+  - Performs a synchronous POST request and blocks until the response arrives.
+- `QByteArray put_sync(const QString &url, const QByteArray &data)`:
+  - Performs a synchronous PUT request and blocks until the response arrives.
+- `QByteArray patch_sync(const QString &url, const QByteArray &data)`:
+  - Performs a synchronous PATCH request and blocks until the response arrives.
+- `QByteArray del_sync(const QString &url)`:
+  - Performs a synchronous DELETE request and blocks until the response arrives.
 
 #### Signals
 
-- `success(const QByteArray &data)`: Signal emitted when an asynchronous network call succeeds.
-- `error(const QString &errorString)`: Signal emitted when an asynchronous network call fails.
+- `success(const QByteArray &data)`:
+  - Signal emitted when an asynchronous network call succeeds.
+- `error(const QString &errorString)`:
+  - Signal emitted when an asynchronous network call fails.
 
 #### Private Slots
 
-- `onReplyFinished()`: Slot for internal use to process network replies.
+- `onReplyFinished()`:
+  - Slot for internal use to process network replies.
 
 ## Functions
 
@@ -84,8 +90,10 @@ Writes data to a file.
 
 #### Parameters
 
-- `const QString &path`: The path of the file to write.
-- `const QByteArray &data`: The data to write.
+- `const QString &path`:
+  - The path of the file to write.
+- `const QByteArray &data`:
+  - The data to write.
 
 ### imageFromBytes
 

@@ -37,6 +37,14 @@ void HttpClient::setBearerToken(const QString& jwtToken) {
     HttpClient::token = jwtToken;
 }
 
+void HttpClient::setGlobalTimeout(std::chrono::milliseconds ms) {
+    manager->setTransferTimeout(ms != std::chrono::milliseconds::zero() ? ms : QNetworkRequest::DefaultTransferTimeout);
+}
+
+void HttpClient::resetGlobalTimeout() {
+    manager->setTransferTimeout(QNetworkRequest::DefaultTransferTimeout);
+}
+
 // Initialize static token
 QString HttpClient::token = QString();
 
@@ -45,6 +53,14 @@ void HttpClient::get(const QString& url) noexcept {
     QNetworkRequest request(qUrl);
     setHeaders(&request);
     QNetworkReply* reply = manager->get(request);
+    connect(reply, &QNetworkReply::finished, this, &HttpClient::onReplyFinished);
+}
+
+void HttpClient::head(const QString& url) noexcept {
+    QUrl qUrl(url);
+    QNetworkRequest request(qUrl);
+    setHeaders(&request);
+    QNetworkReply *reply = manager->head(request);
     connect(reply, &QNetworkReply::finished, this, &HttpClient::onReplyFinished);
 }
 
@@ -101,6 +117,14 @@ QByteArray HttpClient::get_sync(const QString& url) {
     QNetworkRequest request(qUrl);
     setHeaders(&request);
     QNetworkReply* reply = manager->get(request);
+    return waitForResponse(reply);
+}
+
+QByteArray HttpClient::head_sync(const QString& url) {
+    QUrl qUrl(url);
+    QNetworkRequest request(qUrl);
+    setHeaders(&request);
+    QNetworkReply *reply = manager->head(request);
     return waitForResponse(reply);
 }
 

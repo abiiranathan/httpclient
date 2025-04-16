@@ -59,6 +59,12 @@ Wrapper class around the QNetworkAccessManager to simplify performing HTTP reque
   - Sets the Bearer Token for authentication.
 - `void get(const QString &url) noexcept`:
   - Performs a GET request asynchronously.
+- `void setGlobalTimeout(std::chrono::milliseconds ms)`:
+  - Set the qthttpclient's transfer timeout to the given value (in milliseconds).
+- `void resetGlobalTimeout()`:
+  - Reset the qthttpclient timeout to Qt's default.
+- `void HEAD(const QString& url) noexcept`:
+  - Performs a HEAD request asynchronously.
 - `void post(const QString &url, const QByteArray &data) noexcept`:
   - Performs a POST request asynchronously.
 - `void put(const QString &url, const QByteArray &data) noexcept`:
@@ -69,6 +75,8 @@ Wrapper class around the QNetworkAccessManager to simplify performing HTTP reque
   - Performs a DELETE request asynchronously.
 - `QByteArray get_sync(const QString &url)`:
   - Performs a synchronous GET request and blocks until the response arrives.
+- `QByteArray head_sync(const QString& url)`:
+  - Performs a synchronous HEAD request and blocks until the response arrives.
 - `QByteArray post_sync(const QString &url, const QByteArray &data)`:
   - Performs a synchronous POST request and blocks until the response arrives.
 - `QByteArray put_sync(const QString &url, const QByteArray &data)`:

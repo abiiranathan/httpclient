@@ -102,6 +102,9 @@ public:
      */
     static void setRootCA(const QString& certPath);
 
+    void setGlobalTimeout(std::chrono::milliseconds ms);
+    void resetGlobalTimeout();
+
     /**
      * @brief Set the Bearer Token string. This will be used to Bearer Auth.
      *
@@ -116,6 +119,14 @@ public:
      * @param url QString
      */
     void get(const QString& url) noexcept;
+
+    /**
+     * @brief Perform a HEAD request asyncronously. You will need to access the response by connecting
+     * to the success signal and error to error signal.
+     *
+     * @param url QString
+     */
+    void head(const QString& url) noexcept;
 
     /**
      * @brief Perform a POST request asyncronously. You will need to access the response by connecting
@@ -156,6 +167,12 @@ public:
      * Returns data in request body if successful or throws a NetworkException if it fails.
      */
     QByteArray get_sync(const QString& url);
+
+    /** Perform syncronous HEAD request and block until the response arrives
+     * Returns data in request body if successful or throws a NetworkException if it fails.
+     * You must catch this error to avoid segmentation faults.
+     */
+    QByteArray head_sync(const QString& url);
 
     /** Perform syncronous POST request and block until the response arrives
      * Returns data in request body if successful or throws a NetworkException if it fails.

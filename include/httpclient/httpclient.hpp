@@ -204,7 +204,7 @@ private:
     // Used by all syncronous method to process reply, read data and return it to caller
     // and is responsible for throwing the NetworkException is the reply failed or status
     // code is > 300.
-    QByteArray waitForResponse(QNetworkReply* reply);
+    static QByteArray waitForResponse(QNetworkReply* reply);
 
 signals:
     /**

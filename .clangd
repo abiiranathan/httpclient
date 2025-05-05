@@ -1,0 +1,95 @@
+CompileFlags:
+  Add:
+    - "-Wall" # Enable all warnings
+    - "-Werror" # Treat warnings as errors
+    - "-Wextra" # Enable extra warnings
+    - "-ferror-limit=0" # Disable limiting the number of errors
+    - "-fblocks" # Enable support for blocks
+    - "-Wshadow" # Warn on variable shadowing
+    - "-Wformat=2" # Enable stricter format string checks
+    - "-Wpedantic" # Enforce strict ISO C/C++ compliance
+    - "-fstack-protector-strong" # Enable strong stack protection
+    - "-D_FORTIFY_SOURCE=2" # Enable extra compile-time and runtime checks
+    - "-fno-strict-aliasing" # Disable strict aliasing rules for better safety
+    - "-Wconversion" # Warn about implicit type conversions
+    - "-Wunused" # Warn about all unused entities
+    - "-Wdouble-promotion" # Warn about float to double implicit conversions
+    - "-Wformat-security" # Warn about security issues in format functions
+    - "-Wpointer-arith" # Warn on pointer arithmetic
+    - "-Wfloat-equal" # Warn on comparisons between floats
+    - "-fvisibility=hidden" # Make symbols hidden by default for better security
+    - "-ftrivial-auto-var-init=pattern" # Initialize automatic variables with a pattern
+    - "-Wgnu-statement-expression"
+    - "-Wno-gnu-zero-variadic-macro-arguments"
+    - "-Wno-tautological-pointer-compare"
+    - "-Wno-missing-prototypes"
+
+Index:
+  Background: Build # Build index in background for better performance
+  StandardLibrary: Yes # Index the standard library
+
+InlayHints: # Visual hints in the editor
+  Enabled: true
+  ParameterNames: true
+  DeducedTypes: true
+  Designators: true
+  BlockEnd: true
+
+Hover:
+  ShowAKA: true # Show alternative names for types/functions
+
+---
+# Fragment specific to C++ source files
+If:
+  PathMatch: [.*\.cpp, .*\.hpp, .*\.c\+\+, .*\.h\+\+, .*\.cc, .*\.hh]
+CompileFlags:
+  Add:
+    - "-std=c++17" # Use C++20 standard (more modern)
+    - "-xc++" # Treat file as C++ code
+    - "-Wno-c++98-compat" # Disable C++98 compatibility warning
+    - "-Wno-c++11-compat" # Disable C++11 compatibility warning
+    - "-Wsuggest-override" # Suggest override for virtual functions
+    - "-Wsuggest-final-types" # Suggest marking final where possible
+    - "-Wlogical-op" # Warn about logical operations being used where bitwise were probably wanted
+    - "-Wmisleading-indentation" # Warn about misleading indentation
+    - "-Wnull-dereference" # Warn about null pointer dereference
+    - "-Wuseless-cast" # Warn about useless casts
+    - "-fcoroutines" # Enable coroutines support
+  Remove:
+    - "-Wno-unused-parameter"
+    - "-Wno-format-nonliteral"
+    
+Diagnostics:
+  Suppress:
+    - gnu-statement-expression-from-macro-expansion
+    - readability-static-accessed-through-instance
+    - misc-non-private-member-variables-in-classes
+    - misc-use-internal-linkage
+    
+  UnusedIncludes: "Strict" # Strict checking for unused includes
+  ClangTidy:
+    Add:
+      - bugprone-*
+      - cert-*
+      - clang-analyzer-*
+      - concurrency-*
+      - misc-*
+      - modernize-*
+      - performance-*
+      - portability-*
+      - readability-*
+      - security-*
+      
+    Remove:
+      - fuchsia-*
+      - google-*
+      - zircon-*
+      - abseil-*
+      - modernize-use-trailing-return-type
+      - llvm-*
+      - llvmlibc-*
+      - misc-use-anonymous-namespace
+      - readability-magic-numbers
+      - readability-identifier-length
+      - cert-err58-cpp
+      - bugprone-easily-swappable-parameters

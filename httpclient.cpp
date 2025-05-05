@@ -60,7 +60,7 @@ void HttpClient::head(const QString& url) noexcept {
     QUrl qUrl(url);
     QNetworkRequest request(qUrl);
     setHeaders(&request);
-    QNetworkReply *reply = manager->head(request);
+    QNetworkReply* reply = manager->head(request);
     connect(reply, &QNetworkReply::finished, this, &HttpClient::onReplyFinished);
 }
 
@@ -124,7 +124,7 @@ QByteArray HttpClient::head_sync(const QString& url) {
     QUrl qUrl(url);
     QNetworkRequest request(qUrl);
     setHeaders(&request);
-    QNetworkReply *reply = manager->head(request);
+    QNetworkReply* reply = manager->head(request);
     return waitForResponse(reply);
 }
 

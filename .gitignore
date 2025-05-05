@@ -2,3 +2,5 @@
 build
 *.pdf
 .vscode
+.cache
+node_modules

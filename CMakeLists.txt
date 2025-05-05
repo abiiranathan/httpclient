@@ -9,7 +9,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 include(GNUInstallDirs)
 
-set(SOURCES httpclient.cpp include/httpclient/httpclient.h)
+set(SOURCES httpclient.cpp include/httpclient/httpclient.hpp)
 
 find_package(Qt6 REQUIRED COMPONENTS Core Network Gui)
 

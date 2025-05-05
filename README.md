@@ -6,17 +6,25 @@
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Classes](#classes)
-  - [NetworkException](#networkexception)
-  - [HttpClient](#httpclient)
-- [Functions](#functions)
-  - [writeFile](#writefile)
-  - [imageFromBytes](#imagefrombytes)
-- [Usage](#usage)
-  - [Syncronous APIs](#syncronous-apis)
-  - [Asyncronous APIs](#asyncronous-apis)
-- [Linking with CMAKE](#linking-with-cmake)
+- [httpclient](#httpclient)
+  - [Introduction](#introduction)
+  - [Table of Contents](#table-of-contents)
+  - [Classes](#classes)
+    - [NetworkException](#networkexception)
+      - [Public Methods](#public-methods)
+    - [HttpClient](#httpclient-1)
+      - [Public Methods](#public-methods-1)
+      - [Signals](#signals)
+      - [Private Slots](#private-slots)
+  - [Functions](#functions)
+    - [writeFile](#writefile)
+      - [Parameters](#parameters)
+    - [imageFromBytes](#imagefrombytes)
+      - [Parameters](#parameters-1)
+  - [Usage](#usage)
+    - [Asyncronous APIs](#asyncronous-apis)
+    - [Syncronous APIs](#syncronous-apis)
+    - [Linking with CMAKE](#linking-with-cmake)
 
 ## Classes
 
@@ -103,10 +111,6 @@ Creates a QImage from a byte array.
 
 - `const QByteArray &data`: The byte array containing image data.
 
-## Header File
-
-[httpclient.h](http://link-to-your-httpclient-header-file)
-
 ## Usage
 
 ### Asyncronous APIs
@@ -118,7 +122,7 @@ Creates a QImage from a byte array.
 #include <QTextStream>
 #include <iostream>
 
-#include <httpclient/httpclient.h>
+#include <httpclient/httpclient.hpp>
 
 int main(int argc, char* argv[]) {
     QCoreApplication app(argc, argv);
@@ -173,7 +177,7 @@ int main(int argc, char* argv[]) {
 #include <QTextStream>
 #include <iostream>
 
-#include <httpclient/httpclient.h>
+#include <httpclient/httpclient.hpp>
 
 int main(int argc, char* argv[]) {
     QCoreApplication app(argc, argv);

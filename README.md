@@ -63,7 +63,11 @@ Wrapper class around the QNetworkAccessManager to simplify performing HTTP reque
   - Set the qthttpclient's transfer timeout to the given value (in milliseconds).
 - `void resetGlobalTimeout()`:
   - Reset the qthttpclient timeout to Qt's default.
-- `void HEAD(const QString& url) noexcept`:
+- `void setGlobalUserAgent(const QString &user_agent_signature)`:
+  - Set the qthttpclient's global User Agent value to the parameter.
+- `void resetGlobalUserAgent()`:
+  - Reset the qthttpclient global User Agent value.
+- `void head(const QString& url) noexcept`:
   - Performs a HEAD request asynchronously.
 - `void post(const QString &url, const QByteArray &data) noexcept`:
   - Performs a POST request asynchronously.

@@ -105,6 +105,9 @@ public:
     void setGlobalTimeout(std::chrono::milliseconds ms);
     void resetGlobalTimeout();
 
+    void setGlobalUserAgent(const QString &user_agent_signature);
+    void resetGlobalUserAgent();
+
     /**
      * @brief Set the Bearer Token string. This will be used to Bearer Auth.
      *
@@ -200,6 +203,7 @@ private:
     void setHeaders(QNetworkRequest* request);
 
     static QString token;  // The JWT
+    static QString user_agent_override;  // The User Agent, if set by the user
 
     // Used by all syncronous method to process reply, read data and return it to caller
     // and is responsible for throwing the NetworkException is the reply failed or status

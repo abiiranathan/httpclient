@@ -33,6 +33,14 @@ void HttpClient::setRootCA(const QString& certPath) {
     file.close();
 }
 
+void HttpClient::setGlobalUserAgent(const QString &user_agent_signature) {
+    user_agent_override = user_agent_signature;
+}
+
+void HttpClient::resetGlobalUserAgent() {
+    user_agent_override = "";
+}
+
 void HttpClient::setBearerToken(const QString& jwtToken) {
     HttpClient::token = jwtToken;
 }
@@ -47,6 +55,7 @@ void HttpClient::resetGlobalTimeout() {
 
 // Initialize static token
 QString HttpClient::token = QString();
+QString HttpClient::user_agent_override = QString();
 
 void HttpClient::get(const QString& url) noexcept {
     QUrl qUrl(url);
@@ -172,6 +181,9 @@ void HttpClient::setHeaders(QNetworkRequest* request) {
     // Add authorization header if token is set
     if (!token.isEmpty()) {
         request->setRawHeader("Authorization", QString("Bearer ").append(token).toLocal8Bit());
+    }
+    if (!user_agent_override.isEmpty()) {
+        request->setHeader(QNetworkRequest::KnownHeaders::UserAgentHeader, user_agent_override);
     }
 }
 
